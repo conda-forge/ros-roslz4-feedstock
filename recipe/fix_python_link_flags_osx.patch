@@ -1,3 +1,5 @@
+--- CMakeLists.txt
++++ CMakeLists.txt
 @@ -54,10 +54,11 @@
    LIBRARY_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${PYTHON_INSTALL_DIR}/roslz4)
  if (NOT WIN32)
