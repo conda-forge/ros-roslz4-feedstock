@@ -43,6 +43,8 @@ test:
     - rospkg
   commands:
     - export ROS_ROOT=$PREFIX && python -c "import rospkg;s = rospkg.RosPack();ret = s.get_path('roslz4');print(ret)"
+  imports:
+    - roslz4
 
 about:
   home: https://wiki.ros.org
