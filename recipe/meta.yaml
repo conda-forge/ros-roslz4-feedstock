@@ -26,6 +26,7 @@ requirements:
   host:
     - ros-conda-mutex * melodic
     - ros-conda-base
+    - ros-cpp-common
     - catkin_pkg
     - python
     - lz4-c
@@ -33,6 +34,7 @@ requirements:
   run:
     - ros-conda-mutex * melodic
     - ros-conda-base
+    - ros-cpp-common
     - python
     - lz4-c
 
