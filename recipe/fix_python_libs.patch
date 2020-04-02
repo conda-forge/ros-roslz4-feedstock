@@ -1,0 +1,30 @@
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.0.2)
++cmake_minimum_required(VERSION 3.12)
+ 
+ project(roslz4)
+ 
+@@ -40,9 +40,8 @@
+ 
+ if(NOT ANDROID)
+ # Python bindings
+-set(Python_ADDITIONAL_VERSIONS "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
+-find_package(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
+-include_directories(${PYTHON_INCLUDE_PATH})
++find_package(Python COMPONENTS Interpreter Development REQUIRED)
++include_directories(${Python_INCLUDE_DIRS})
+ 
+ add_library(roslz4_py src/_roslz4module.c)
+ if (NOT WIN32)
+@@ -57,7 +56,7 @@
+ else()
+   set_target_properties(roslz4_py PROPERTIES OUTPUT_NAME _roslz4 SUFFIX ".pyd")
+ endif()
+-target_link_libraries(roslz4_py roslz4 ${catkin_LIBRARIES} ${PYTHON_LIBRARIES})
++target_link_libraries(roslz4_py roslz4 ${catkin_LIBRARIES} ${Python_LIBRARIES})
+ endif()
+ 
+ # Install library
+
