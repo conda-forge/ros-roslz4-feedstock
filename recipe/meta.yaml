@@ -9,6 +9,8 @@ source:
   url: https://github.com/ros-gbp/ros_comm-release/archive/release/melodic/roslz4/{{ version }}.tar.gz
   fn: ros-roslz4-{{ version }}.tar.gz
   sha256: dadf5c7b77d73c30ae362fc3851db8403bf3c1f36cb771918df86f6a015945b4
+  patches:
+    - fix_python_link_flags_osx.patch  # [osx]
 
 build:
   number: 0
