@@ -1,11 +1,16 @@
+{% set name = "ros-roslz4" %}
+{% set version = "1.14.5" %}
+
 package:
-  name: ros-roslz4
-  version: 1.14.3
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  url: https://github.com/ros-gbp/ros_comm-release/archive/release/melodic/roslz4/1.14.3-0.tar.gz
-  fn: ros-roslz4-1.14.3.tar.gz
-  sha256: f1cfdca5119fb941e00a174dbd2ad42a577543994efd979e81fd22970ffc7a0e
+  url: https://github.com/ros-gbp/ros_comm-release/archive/release/melodic/roslz4/{{ version }}.tar.gz
+  fn: ros-roslz4-{{ version }}.tar.gz
+  sha256: dadf5c7b77d73c30ae362fc3851db8403bf3c1f36cb771918df86f6a015945b4
+  patches:
+    - fix_python_link_flags_osx.patch  # [osx]
 
 build:
   number: 0
@@ -21,6 +26,7 @@ requirements:
   host:
     - ros-conda-mutex * melodic
     - ros-conda-base
+    - ros-cpp-common
     - catkin_pkg
     - python
     - lz4-c
@@ -28,6 +34,7 @@ requirements:
   run:
     - ros-conda-mutex * melodic
     - ros-conda-base
+    - ros-cpp-common
     - python
     - lz4-c
 
@@ -36,6 +43,8 @@ test:
     - rospkg
   commands:
     - export ROS_ROOT=$PREFIX && python -c "import rospkg;s = rospkg.RosPack();ret = s.get_path('roslz4');print(ret)"
+  imports:
+    - roslz4
 
 about:
   home: https://wiki.ros.org
